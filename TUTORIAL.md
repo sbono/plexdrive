@@ -21,9 +21,10 @@ After=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/plexdrive -v 2 /mnt/plexdrive
+ExecStart=/usr/bin/plexdrive mount -v 2 /mnt/plexdrive
 ExecStop=/bin/fusermount -u /mnt/plexdrive
 Restart=on-abort
+User=YourUser (owner of the home where .plexdrive is)
 
 [Install]
 WantedBy=default.target
@@ -75,6 +76,7 @@ Type=simple
 ExecStart=/usr/bin/rclone mount --allow-other local-crypt: /mnt/media
 ExecStop=/bin/fusermount -u /mnt/media
 Restart=on-abort
+User=YourUser (owner of the home where rclone's config file is)
 
 [Install]
 WantedBy=default.target
